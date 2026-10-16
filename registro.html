@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar conta - WhatsApp</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+body {
+  background-color: #f4f6f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.login-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 380px;
+  padding: 36px 32px 28px 32px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.03);
+  text-align: center;
+}
+.logo { margin-bottom: 16px; display: flex; justify-content: center; }
+h1 { font-size: 1.4rem; font-weight: 700; color: #111b21; margin-bottom: 6px; }
+.subtitle { font-size: 0.82rem; color: #667781; margin-bottom: 24px; line-height: 1.3; }
+.form-group { text-align: left; margin-bottom: 16px; }
+label { display: block; font-size: 0.8rem; font-weight: 600; color: #111b21; margin-bottom: 6px; }
+.input-container { position: relative; display: flex; align-items: center; }
+.input-icon { position: absolute; left: 12px; pointer-events: none; }
+.input-container input {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  border: 1px solid #e9edef;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #111b21;
+  outline: none;
+  background-color: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-container input::placeholder { color: #aebac1; }
+.input-container input:focus {
+  border-color: #128c7e;
+  box-shadow: 0 0 0 2px rgba(18, 140, 126, 0.15);
+}
+.btn-continue {
+  width: 100%;
+  padding: 11px;
+  background-color: #128c7e;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.btn-continue:hover { background-color: #075e54; }
+.btn-continue:active { transform: scale(0.98); }
+.btn-continue:disabled { opacity: 0.6; cursor: not-allowed; }
+.footer-text {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f2f5;
+  font-size: 0.72rem;
+  color: #8696a0;
+}
+.footer-text span { color: #128c7e; font-weight: 600; }
+
+    .link-voltar {
+      display: block;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: #128c7e;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .link-voltar:hover { text-decoration: underline; }
+
+    .aviso {
+      display: none;
+      margin-bottom: 16px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      text-align: left;
+    }
+    .aviso.erro    { display: block; background: #fdecea; color: #b3261e; }
+    .aviso.sucesso { display: block; background: #e7f6ec; color: #1e7b3a; }
+  </style>
+</head>
+<body>
+
+  <main class="login-card">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" width="36" height="36" fill="#25D366">
+        <path d="M12.004 2c-5.523 0-10 4.477-10 10 0 1.766.457 3.427 1.258 4.873l-1.258 4.602 4.71-1.236c1.4.747 2.996 1.173 4.69 1.173 5.523 0 10-4.477 10-10s-4.477-10-10-10zm5.82 14.156c-.244.686-1.42 1.31-1.956 1.378-.49.062-1.127.288-3.69-.728-3.153-1.246-5.18-4.432-5.337-4.636-.157-.204-1.278-1.701-1.278-3.245 0-1.544.808-2.303 1.096-2.613.288-.31.628-.387.838-.387.21 0 .42.003.602.012.192.01.45-.073.704.536.262.628.89 2.17.968 2.327.078.157.131.34.026.548-.105.21-.157.34-.314.523-.157.183-.33.407-.472.548-.157.157-.32.328-.138.642.183.314.812 1.34 1.74 2.167 1.194 1.065 2.2 1.396 2.514 1.553.314.157.498.131.681-.078.183-.21.785-.916.995-1.23.21-.314.42-.262.707-.157.288.105 1.83.863 2.144 1.02.314.157.523.235.602.366.078.131.078.76-.166 1.446z"/>
+      </svg>
+    </div>
+
+    <h1>Criar conta</h1>
+    <p class="subtitle">Preencha os dados abaixo para se cadastrar</p>
+
+    <div id="aviso" class="aviso"></div>
+
+    <form id="form-registro" onsubmit="event.preventDefault(); registrarUsuario();">
+
+      <div class="form-group">
+        <label for="reg-apelido">Apelido</label>
+        <div class="input-container">
+          <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#8696a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <input type="text" id="reg-apelido" placeholder="ex: thiago_alves" maxlength="50" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reg-telefone">Número de telefone</label>
+        <div class="input-container">
+          <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#8696a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <input type="tel" id="reg-telefone" placeholder="só números, com DDD" inputmode="numeric" maxlength="15" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reg-senha">Senha</label>
+        <div class="input-container">
+          <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#8696a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <input type="password" id="reg-senha" placeholder="mínimo 6 caracteres" minlength="6" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reg-senha2">Confirmar senha</label>
+        <div class="input-container">
+          <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#8696a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <input type="password" id="reg-senha2" placeholder="repita a senha" required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-continue" id="btn-registrar">Cadastrar</button>
+    </form>
+
+    <a class="link-voltar" href="index.html">Já tenho conta · Entrar</a>
+
+    <div class="footer-text">
+      Protegido por <span>WhatsApp Login</span>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="../js/registro.js"></script>
+</body>
+</html>
